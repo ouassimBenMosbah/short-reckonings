@@ -1,0 +1,35 @@
+<ng-container *ngIf="obsInitial$ | async as obsInitial; else loading">
+  <mat-tab-group style="padding: 16px;">
+    <mat-tab label="Participants">
+      <div class="mat-tab-content">
+        <app-bill-participants
+          [participants]="obsInitial.participants$"
+          (participantsChanges)="onParticipantsChanges($event)"
+        ></app-bill-participants>
+      </div>
+    </mat-tab>
+
+    <mat-tab label="Spendings">
+      <div class="mat-tab-content">
+        <app-bill-spendings
+          [spendings]="obsInitial.spendings$"
+          [participants]="obsInitial.participants$"
+          (spendingsChanges)="onSpendingsChanges($event)"
+        ></app-bill-spendings>
+      </div>
+    </mat-tab>
+
+    <mat-tab label="Shares">
+      <div *ngIf="obsRes$ | async as obsRes" class="mat-tab-content">
+        <app-bill-shares
+          [shares]="obsRes.shares$"
+          [participants]="obsRes.participantsRecord$"
+        ></app-bill-shares>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</ng-container>
+
+<ng-template #loading>
+  Loading...
+</ng-template>

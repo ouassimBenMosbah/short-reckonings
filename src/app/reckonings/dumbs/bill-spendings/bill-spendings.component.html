@@ -1,0 +1,74 @@
+<form [formGroup]="billFormGroup">
+  <ng-container formArrayName="spendings">
+    <div *ngFor="let _ of spendingsFA.controls; index as i">
+      <ng-container [formGroupName]="i">
+        <mat-form-field>
+          <input
+            matInput
+            #descriptionInputs
+            type="text"
+            formControlName="description"
+            placeholder="Achat"
+            required
+          />
+        </mat-form-field>
+
+        <mat-form-field>
+          <input
+            matInput
+            type="number"
+            formControlName="total"
+            placeholder="Coût"
+            min="0"
+            required
+          />
+        </mat-form-field>
+
+        <mat-form-field>
+          <input
+            matInput
+            [matAutocomplete]="auto"
+            type="text"
+            placeholder="Payé par"
+            formControlName="userId"
+            required
+          />
+          <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayUserFn.bind(this)">
+            <mat-option
+              *ngFor="let particpant of filteredParticipants$[i] | async"
+              [value]="particpant.userId"
+            >
+              {{ particpant.fullName }}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Payé pour</mat-label>
+          <mat-select formControlName="usersConcernedIds" required multiple>
+            <mat-option (click)="toggleSelection(i)" [value]="0">Tous</mat-option>
+            <mat-option
+              *ngFor="let participant of participants"
+              [value]="participant.userId"
+              (onSelectionChange)="onSelectionChange($event, i)"
+            >
+              {{ participant.fullName }}
+            </mat-option>
+          </mat-select>
+          <!-- <mat-error *ngIf="animalControl.hasError('required')">Please choose an animal</mat-error>
+          <mat-hint>{{ animalControl.value?.sound }}</mat-hint> -->
+        </mat-form-field>
+
+        <button
+          mat-icon-button
+          (click)="deleteSpending(i)"
+          type="button"
+          aria-label="Delete participant button"
+        >
+          <mat-icon>delete_outline</mat-icon>
+        </button>
+      </ng-container>
+    </div>
+  </ng-container>
+  <button mat-raised-button (click)="onClickAddSpending()" color="primary">Add Spending</button>
+</form>
