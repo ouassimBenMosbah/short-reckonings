@@ -15,6 +15,11 @@ import { ReckoningBoardFacadeService } from './../../services/reckoning-board-fa
 export class ReckoningBoardComponent implements OnInit {
   public obsInitial$: Observable<{ participants$: User[]; spendings$: Spending[] }>;
   public obsRes$: Observable<{ shares$: Share; participantsRecord$: Record<number, User> }>;
+  public focusedTab = {
+    index: 0,
+    headerBackgroundColor: 'primary',
+    backgroundColor: 'rgba(63, 81, 181, 0.1)'
+  };
 
   constructor(private reckoningBoardFacadeService: ReckoningBoardFacadeService) {}
 
@@ -34,6 +39,28 @@ export class ReckoningBoardComponent implements OnInit {
         participantsRecord$: participantsRecord
       }))
     );
+  }
+
+  private getTabValues(
+    index: number
+  ): { index: number; backgroundColor: string; headerBackgroundColor: string } {
+    let headerBackgroundColor = null;
+    let backgroundColor = null;
+    if (index === 0) {
+      headerBackgroundColor = 'primary';
+      backgroundColor = 'rgba(63, 81, 181, 0.1)';
+    } else if (index === 1) {
+      headerBackgroundColor = 'accent';
+      backgroundColor = 'rgba(255, 64, 129, 0.1)';
+    } else if (index === 2) {
+      headerBackgroundColor = 'warn';
+      backgroundColor = 'rgba(244, 67, 54, 0.1)';
+    }
+    return { index, headerBackgroundColor, backgroundColor };
+  }
+
+  public onSelectedIndexChange(index: number): void {
+    this.focusedTab = this.getTabValues(index);
   }
 
   public onSpendingsChanges(spendings: Spending[]): void {

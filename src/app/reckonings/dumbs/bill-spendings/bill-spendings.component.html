@@ -1,8 +1,8 @@
 <form [formGroup]="billFormGroup">
   <ng-container formArrayName="spendings">
-    <div *ngFor="let _ of spendingsFA.controls; index as i">
+    <div *ngFor="let _ of spendingsFA.controls; index as i" class="inputs-wrapper">
       <ng-container [formGroupName]="i">
-        <mat-form-field>
+        <mat-form-field class="w160">
           <input
             matInput
             #descriptionInputs
@@ -13,7 +13,7 @@
           />
         </mat-form-field>
 
-        <mat-form-field>
+        <mat-form-field class="w80">
           <input
             matInput
             type="number"
@@ -24,7 +24,7 @@
           />
         </mat-form-field>
 
-        <mat-form-field>
+        <mat-form-field class="w160">
           <input
             matInput
             [matAutocomplete]="auto"
@@ -65,7 +65,7 @@
           type="button"
           aria-label="Delete participant button"
         >
-          <mat-icon>delete_outline</mat-icon>
+          <mat-icon class="delete">delete_outline</mat-icon>
         </button>
       </ng-container>
     </div>
