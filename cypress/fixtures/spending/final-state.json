@@ -1,0 +1,40 @@
+{
+  "spendings": {
+    "1": {
+      "spendingId": 1,
+      "description": "TV",
+      "total": 100,
+      "userId": 1,
+      "usersConcernedIds": [1, 2, 3],
+      "user": { "userId": 1, "fullName": "Chandler", "phoneNumber": "01 23 45 67 89" }
+    },
+    "2": {
+      "spendingId": 2,
+      "description": "Ring",
+      "total": 800,
+      "userId": 1,
+      "usersConcernedIds": [2],
+      "user": { "userId": 1, "fullName": "Chandler", "phoneNumber": "01 23 45 67 89" }
+    },
+    "3": {
+      "spendingId": 3,
+      "description": "Drinks",
+      "total": 80,
+      "userId": 3,
+      "usersConcernedIds": [1, 2, 3],
+      "user": { "userId": 3, "fullName": "Rachel", "phoneNumber": "01 89 23 47 56" }
+    },
+    "4": {
+      "spendingId": 4,
+      "description": "Flower",
+      "total": 50,
+      "userId": 2,
+      "usersConcernedIds": [1]
+    }
+  },
+  "users": {
+    "1": { "userId": 1, "fullName": "Chandler", "phoneNumber": "01 23 45 67 89" },
+    "2": { "userId": 2, "fullName": "Monica", "phoneNumber": "0198765432" },
+    "3": { "userId": 3, "fullName": "Rachel", "phoneNumber": "01 89 23 47 56" }
+  }
+}
