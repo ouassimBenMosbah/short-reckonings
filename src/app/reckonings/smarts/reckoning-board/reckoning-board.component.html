@@ -1,16 +1,18 @@
 <ng-container *ngIf="obsInitial$ | async as obsInitial; else loading">
   <mat-tab-group
     mat-stretch-tabs
+    [(selectedIndex)]="tabSlectedIndex"
     [backgroundColor]="focusedTab.headerBackgroundColor"
     (selectedIndexChange)="onSelectedIndexChange($event)"
     style="height: 100%"
   >
     <mat-tab>
       <ng-template mat-tab-label>
-        <span class="material-icons">person</span>Participants
+        <span class="material-icons" data-cy="tab-title">person</span>Participants
       </ng-template>
       <div class="mat-tab-content" [ngStyle]="{ 'background-color': focusedTab.backgroundColor }">
         <app-bill-participants
+          data-cy="component-participants"
           [participants]="obsInitial.participants$"
           (participantsChanges)="onParticipantsChanges($event)"
         ></app-bill-participants>
@@ -19,10 +21,11 @@
 
     <mat-tab>
       <ng-template mat-tab-label>
-        <span class="material-icons">add_shopping_cart</span> Dépenses
+        <span class="material-icons" data-cy="tab-title">add_shopping_cart</span> Dépenses
       </ng-template>
       <div class="mat-tab-content" [ngStyle]="{ 'background-color': focusedTab.backgroundColor }">
         <app-bill-spendings
+          data-cy="component-spendings"
           [spendings]="obsInitial.spendings$"
           [participants]="obsInitial.participants$"
           (spendingsChanges)="onSpendingsChanges($event)"
@@ -32,16 +35,13 @@
 
     <mat-tab>
       <ng-template mat-tab-label>
-        <span class="material-icons">account_balance</span> Comptes
+        <span class="material-icons" data-cy="tab-title">account_balance</span> Comptes
       </ng-template>
-      <div
-        *ngIf="obsRes$ | async as obsRes"
-        class="mat-tab-content"
-        [ngStyle]="{ 'background-color': focusedTab.backgroundColor }"
-      >
+      <div class="mat-tab-content" [ngStyle]="{ 'background-color': focusedTab.backgroundColor }">
         <app-bill-shares
-          [shares]="obsRes.shares$"
-          [participants]="obsRes.participantsRecord$"
+          data-cy="component-balance"
+          [shares]="(obsRes$ | async)?.shares$"
+          [participants]="(obsRes$ | async)?.participantsRecord$"
         ></app-bill-shares>
       </div>
     </mat-tab>
