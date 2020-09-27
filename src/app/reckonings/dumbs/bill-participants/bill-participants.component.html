@@ -1,10 +1,17 @@
 <form [formGroup]="billFormGroup">
   <ng-container formArrayName="users">
-    <div *ngFor="let _ of users.controls; index as i">
+    <div *ngFor="let _ of users.controls; index as i" data-cy="participant-wrapper">
       <div [formGroupName]="i" class="inputs-wrapper">
         <mat-form-field>
           <mat-label>Nom</mat-label>
-          <input matInput #nameInputs type="text" formControlName="fullName" required />
+          <input
+            matInput
+            #nameInputs
+            type="text"
+            formControlName="fullName"
+            required
+            data-cy="input-name"
+          />
         </mat-form-field>
 
         <mat-form-field>
@@ -15,6 +22,7 @@
             formControlName="phoneNumber"
             pattern="[0-9]{2} ?[0-9]{2} ?[0-9]{2} ?[0-9]{2} ?[0-9]{2}"
             required
+            data-cy="input-phone"
           />
         </mat-form-field>
         <button
@@ -22,13 +30,19 @@
           (click)="deleteParticipant(i)"
           type="button"
           aria-label="Delete participant button"
+          data-cy="delete-participant-button"
         >
           <mat-icon class="delete">delete_outline</mat-icon>
         </button>
       </div>
     </div>
   </ng-container>
-  <button mat-raised-button (click)="onClickAddParticipant()" color="primary">
+  <button
+    mat-raised-button
+    (click)="onClickAddParticipant()"
+    color="primary"
+    data-cy="add-participant-button"
+  >
     Add participant
   </button>
 </form>

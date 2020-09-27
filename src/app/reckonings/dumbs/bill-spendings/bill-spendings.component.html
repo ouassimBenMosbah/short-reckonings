@@ -1,6 +1,10 @@
 <form [formGroup]="billFormGroup">
   <ng-container formArrayName="spendings">
-    <div *ngFor="let _ of spendingsFA.controls; index as i" class="inputs-wrapper">
+    <div
+      *ngFor="let _ of spendingsFA.controls; index as i"
+      class="inputs-wrapper"
+      data-cy="spending-wrapper"
+    >
       <ng-container [formGroupName]="i">
         <mat-form-field class="w160">
           <input
@@ -10,6 +14,7 @@
             formControlName="description"
             placeholder="Achat"
             required
+            data-cy="spending-label-input"
           />
         </mat-form-field>
 
@@ -55,8 +60,6 @@
               {{ participant.fullName }}
             </mat-option>
           </mat-select>
-          <!-- <mat-error *ngIf="animalControl.hasError('required')">Please choose an animal</mat-error>
-          <mat-hint>{{ animalControl.value?.sound }}</mat-hint> -->
         </mat-form-field>
 
         <button
@@ -64,11 +67,19 @@
           (click)="deleteSpending(i)"
           type="button"
           aria-label="Delete participant button"
+          data-cy="delete-spending-button"
         >
           <mat-icon class="delete">delete_outline</mat-icon>
         </button>
       </ng-container>
     </div>
   </ng-container>
-  <button mat-raised-button (click)="onClickAddSpending()" color="primary">Add Spending</button>
+  <button
+    mat-raised-button
+    (click)="onClickAddSpending()"
+    color="primary"
+    data-cy="add-spending-button"
+  >
+    Add Spending
+  </button>
 </form>

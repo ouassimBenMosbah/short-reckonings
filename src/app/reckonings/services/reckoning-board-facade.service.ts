@@ -71,7 +71,7 @@ export class ReckoningBoardFacadeService {
     const maxCreditor = this.arrayMax(Object.values(spendingsByParticipant));
     const maxDebitor = this.arrayMin(Object.values(spendingsByParticipant));
 
-    if (maxCreditor.total === 0 && maxDebitor.total === 0) {
+    if (maxCreditor.total < 1e-3 && maxDebitor.total < 1e-3) {
       return { ...spendingsByParticipant };
     }
 

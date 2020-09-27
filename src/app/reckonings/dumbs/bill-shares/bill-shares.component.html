@@ -1,11 +1,11 @@
-<div class="wrapper">
+<div *ngIf="shares; else noShares" class="wrapper">
   <ng-container *ngFor="let share of shares | keyvalue">
     <ng-container *ngIf="share.value.moneyOwed.length">
       <div *ngFor="let item of share.value.moneyOwed">
         <b style="color: #e21313">{{
           participants[item.userId]?.fullName || 'Participant supprimé'
         }}</b>
-        doit <b>{{ item.amount }}€</b> à
+        doit <b>{{ item.amount | number: '1.2-2' }}€</b> à
         <b style="color: #32bf29">{{
           participants[share.key]?.fullName || 'Participant supprimé'
         }}</b>
@@ -13,3 +13,5 @@
     </ng-container>
   </ng-container>
 </div>
+
+<ng-template #noShares> Aucune dépense validée </ng-template>
