@@ -1,6 +1,6 @@
 # ShortReckoningsFront
 
-You can try a [demo](https://ouassimbenmosbah.github.io/short-reckonings/home?tab=participants)
+Here is a working live [demo](https://ouassimbenmosbah.github.io/short-reckonings/home?tab=participants)
 
 ## Development server
 
