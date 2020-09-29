@@ -1,5 +1,7 @@
 # ShortReckoningsFront
 
+![App demo](https://github.com/ouassimBenMosbah/short-reckonings/raw/master/src/assets/demo.gif)
+
 Here is a working live [demo](https://ouassimbenmosbah.github.io/short-reckonings/home?tab=participants)
 
 ## Development server
