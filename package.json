@@ -10,7 +10,8 @@
     "lint": "ng lint",
     "cypress:run": "cypress run",
     "cypress:open": "cypress open",
-    "test": "npx jest"
+    "test": "npx jest",
+    "test:debug": "node --inspect node_modules/.bin/jest --runInBand"
   },
   "private": true,
   "dependencies": {
