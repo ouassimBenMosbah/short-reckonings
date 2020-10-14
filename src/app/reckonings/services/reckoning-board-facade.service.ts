@@ -14,7 +14,7 @@ export class ReckoningBoardFacadeService {
   constructor(private storeService: StoreService) {}
 
   public getBill(): Observable<Bill> {
-    return this.storeService.getState().pipe(pluck('1', 'bill'));
+    return this.storeService.getState().pipe(pluck('bill', '1'));
   }
 
   public getParticipants(): Observable<User[]> {
